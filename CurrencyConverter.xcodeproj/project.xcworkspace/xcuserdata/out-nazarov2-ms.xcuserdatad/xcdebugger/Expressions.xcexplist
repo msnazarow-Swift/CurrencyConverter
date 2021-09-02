@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "closure #1 in CurrencyPickerView.pickerView(_:viewForRow:forComponent:reusing:):CurencyPickerView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "CurrencyPickerView.pickerView(_:numberOfRowsInComponent:):CurencyPickerView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "CurrencyPickerView.pickerView(_:titleForRow:forComponent:):CurencyPickerView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "CurrencyPickerView.reload():CurencyPickerView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "MainViewController.setImageForRow(row:data:):MainViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "mainView.currencyView.images[row]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in MainInteractor.getMoneyNames(completion:):MainInteractor.swift">
+      </ContextState>
+      <ContextState
+         contextName = "CurrencyPickerView.pickerView(_:viewForRow:forComponent:reusing:):CurencyPickerView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "MainPresenter.setImageForRow(row:data:):MainPresenter.swift">
+      </ContextState>
+      <ContextState
+         contextName = "CurrencyPickerView.pickerView(_:widthForComponent:):CurencyPickerView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "bounds.width">
+            </PersistentString>
+            <PersistentString
+               value = "UIApplication.shared.keyWindow?.safeAreaInsets.top">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in MainInteractor.getCurrencies(complition:):MainInteractor.swift">
+      </ContextState>
+      <ContextState
+         contextName = "CurrencyPickerView.setArraySize(_:):CurencyPickerView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in MainPresenter.changeInputMoney():MainPresenter.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "currency.countryCode">
+            </PersistentString>
+            <PersistentString
+               value = "StorageService.shared.savedInputCurrency()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in CurrencyPickerView.stackView.getter:CurencyPickerView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "MainPresenter.changeInputMoney():MainPresenter.swift">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
