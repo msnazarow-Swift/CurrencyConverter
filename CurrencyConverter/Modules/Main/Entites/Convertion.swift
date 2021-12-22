@@ -8,7 +8,7 @@
 import Foundation
 
 class Convertion: Codable {
-  let date: String
-  let base: String
-  let rates: [String: String]
+    let date: String
+    let base: String
+    let rates: [String: String]
 }

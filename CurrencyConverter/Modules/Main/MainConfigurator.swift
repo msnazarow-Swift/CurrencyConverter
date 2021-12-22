@@ -7,18 +7,18 @@
 
 import Foundation
 protocol MainConfiguratorProtocol {
-  func configure(with viewController: MainViewController)
+    func configure(with viewController: MainViewController)
 }
 
 class MainConfigurator: MainConfiguratorProtocol {
-  func configure(with viewController: MainViewController) {
-    let router = MainRouter(viewController: viewController)
-    let presenter = MainPresenter(view: viewController, router: router)
-    let interactor = MainInteractor(presenter: presenter)
-    viewController.presenter = presenter
-    presenter.interactor = interactor
-    presenter.router = router
-    viewController.mainView.currencyView.presenter = presenter
-    presenter.currencyPickerView = viewController.mainView.currencyView
-  }
+    func configure(with viewController: MainViewController) {
+        let router = MainRouter(viewController: viewController)
+        let presenter = MainPresenter(view: viewController, router: router)
+        let interactor = MainInteractor(presenter: presenter)
+        viewController.presenter = presenter
+        presenter.interactor = interactor
+        presenter.router = router
+        viewController.mainView.currencyView.presenter = presenter
+        presenter.currencyPickerView = viewController.mainView.currencyView
+    }
 }

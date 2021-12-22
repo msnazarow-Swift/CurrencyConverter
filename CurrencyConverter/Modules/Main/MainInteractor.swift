@@ -7,20 +7,20 @@
 
 import UIKit
 
-protocol MainInteractorProtocol: class {
-  func getCurrencies(complition: @escaping (Result<[Currency], Error>) -> Void)
+protocol MainInteractorProtocol: AnyObject {
+    func getCurrencies(complition: @escaping (Result<[Currency], Error>) -> Void)
 }
-// swiftlint:disable implicitly_unwrapped_optional
+
 class MainInteractor: MainInteractorProtocol {
-  weak var presenter: MainPresenterProtocol!
+    weak var presenter: MainPresenterProtocol!
 
-  init(presenter: MainPresenterProtocol) {
-    self.presenter = presenter
-  }
+    init(presenter: MainPresenterProtocol) {
+        self.presenter = presenter
+    }
 
-  func getImages() {
-  }
-  func getCurrencies(complition: @escaping (Result<[Currency], Error>) -> Void) {
-    NetworkManager.shared.getCurrencies(compition: complition)
-  }
+    func getImages() {
+    }
+    func getCurrencies(complition: @escaping (Result<[Currency], Error>) -> Void) {
+        NetworkManager.shared.getCurrencies(compition: complition)
+    }
 }
