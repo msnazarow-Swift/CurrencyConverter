@@ -7,12 +7,12 @@
 import  Foundation
 
 protocol StorageServiceProtocol: AnyObject {
-    func savedInputValue() -> Double?
-    func saveInputValue(with value: Double?)
-    func savedInputCurrency() -> String?
-    func saveInputCurrency(with currency: String)
-    func savedOutputCurrency() -> String?
-    func saveOutputCurrency(with currency: String)
+  func savedInputValue() -> Double?
+  func saveInputValue(with value: Double?)
+  func savedInputCurrency() -> String?
+  func saveInputCurrency(with currency: String)
+  func savedOutputCurrency() -> String?
+  func saveOutputCurrency(with currency: String)
 }
 
 class StorageService: StorageServiceProtocol {
@@ -21,7 +21,7 @@ class StorageService: StorageServiceProtocol {
   private let inputMoneyAmountKey = "MC.inputMoneyAmountKey"
   static let shared = StorageService()
   func savedInputValue() -> Double? {
-   return UserDefaults.standard.double(forKey: inputMoneyAmountKey)
+    return UserDefaults.standard.double(forKey: inputMoneyAmountKey)
   }
 
   func saveInputValue(with value: Double?) {
@@ -43,6 +43,4 @@ class StorageService: StorageServiceProtocol {
   func saveOutputCurrency(with currency: String) {
     UserDefaults.standard.setValue(currency, forKey: outputMoneyKey)
   }
-
-
 }

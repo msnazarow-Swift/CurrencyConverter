@@ -9,19 +9,18 @@ import Foundation
 import UIKit
 
 protocol ServerServiceProtocol: class {
-    var urlRatesSource: String { get }
-    func openUrl(with urlString: String)
+  var urlRatesSource: String { get }
+  func openUrl(with urlString: String)
 }
 
 class ServerService: ServerServiceProtocol {
-    
-    var urlRatesSource: String {
-        return "https://api.intra.42.fr"
+  var urlRatesSource: String {
+    return "https://api.intra.42.fr"
+  }
+
+  func openUrl(with urlString: String) {
+    if let url = URL(string: urlString) {
+      UIApplication.shared.open(url, options: [:])
     }
-    
-    func openUrl(with urlString: String) {
-        if let url = URL(string: urlString) {
-            UIApplication.shared.open(url, options: [:])
-        }
-    }
+  }
 }

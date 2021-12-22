@@ -20,6 +20,8 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+
+// swiftlint:disable all
 #if canImport(UIKit)
 import UIKit
 #else
@@ -31,9 +33,8 @@ typealias Image = UIImage
 #else
 typealias Image = NSImage
 #endif
-
+//
 extension Image {
-
     /// Crops the insets of transparency around the image.
     ///
     /// - Parameters:
@@ -61,11 +62,9 @@ extension Image {
         return image
         #endif
     }
-
 }
 
 extension CGImage {
-
     /// Crops the insets of transparency around the image.
     ///
     /// - Parameters:
@@ -74,11 +73,9 @@ extension CGImage {
     func trimmingTransparentPixels(maximumAlphaChannel: UInt8 = 0) -> CGImage? {
         return _CGImageTransparencyTrimmer(image: self, maximumAlphaChannel: maximumAlphaChannel)?.trim()
     }
-
 }
 
 private struct _CGImageTransparencyTrimmer {
-
     let image: CGImage
     let maximumAlphaChannel: UInt8
     let cgContext: CGContext
@@ -161,5 +158,4 @@ private struct _CGImageTransparencyTrimmer {
             pixelRowRange.contains(where: { isPixelOpaque(column: column, row: $0) })
         })
     }
-
 }

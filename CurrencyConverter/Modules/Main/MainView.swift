@@ -6,19 +6,19 @@
 //
 
 import UIKit
-
+// swiftlint:disable implicitly_unwrapped_optional
 class MainView: UIView {
-  var delegate: MainViewProtocol!
-  let inputMoneyTextField : UITextField = {
+  weak var delegate: MainViewProtocol!
+  let inputMoneyTextField: UITextField = {
     let textField = UITextField()
-    textField.text = "100";
+    textField.text = "100"
     textField.font = textField.font?.withSize(55)
     textField.textColor = .purple
     textField.setContentHuggingPriority(UILayoutPriority(rawValue: 249), for: .horizontal)
     textField.addDoneOnKeyboard()
     return textField
   }()
-  let outputMoneyLabel : UILabel = {
+  let outputMoneyLabel: UILabel = {
     let label = UILabel()
     label.text = "200"
     label.textColor = .white
@@ -26,42 +26,41 @@ class MainView: UIView {
     label.setContentHuggingPriority(UILayoutPriority(rawValue: 249), for: .horizontal)
     return label
   }()
-  let inputMoneyButton : UIButton =
+  let inputMoneyButton: UIButton =
     {
       let button = UIButton()
       button.setTitle("RUB", for: .normal)
       button.setTitleColor(.purple, for: .normal)
       button.titleLabel?.font = button.titleLabel?.font.withSize(55)
       button.addTarget(self, action: #selector(changeInputMoney), for: .touchUpInside)
-      button.titleLabel?.snp.makeConstraints({ (maker) in
+      button.titleLabel?.snp.makeConstraints { maker in
         maker.height.equalToSuperview()
-      })
+      }
       return button
     }()
-  let outputMoneyButton : UIButton = {
+  let outputMoneyButton: UIButton = {
     let button = UIButton()
-    button.setTitle("EUR",for: .normal)
+    button.setTitle("EUR", for: .normal)
     button.setTitleColor(.white, for: .normal)
     button.titleLabel?.font = button.titleLabel?.font.withSize(55)
     button.addTarget(self, action: #selector(changeOutputMoney), for: .touchUpInside)
-    button.titleLabel?.snp.makeConstraints({ (maker) in
+    button.titleLabel?.snp.makeConstraints { maker in
       maker.height.equalToSuperview()
-    })
+    }
     return button
   }()
-  let convertionLabel : UILabel = {
+  let convertionLabel: UILabel = {
     let label = UILabel()
     label.text = "Hello Biches"
     label.textAlignment = .center
     return label
   }()
-  let infoButton : UIButton = {
+  let infoButton: UIButton = {
     let button = UIButton(type: .infoLight)
     button.addTarget(self, action: #selector(openAboutView), for: .touchUpInside)
     return button
   }()
   lazy var vStack: UIStackView = {
-
     let firstHorisontalStack = UIStackView()
     firstHorisontalStack.axis = .horizontal
     firstHorisontalStack.backgroundColor = .white
@@ -92,7 +91,7 @@ class MainView: UIView {
     self.backgroundColor = .purple
     addSubview(currencyView)
     self.addSubview(vStack)
-    vStack.snp.makeConstraints { (make) in
+    vStack.snp.makeConstraints { make in
       make.top.equalTo(safeAreaLayoutGuide).inset(40)
       make.left.equalTo(safeAreaLayoutGuide).offset(10)
       make.right.equalTo(safeAreaLayoutGuide).inset(10)
@@ -106,28 +105,28 @@ class MainView: UIView {
 
   // MARK: - Actions
 
-  @objc func openAboutView(){
+  @objc func openAboutView() {
     delegate.openAboutView()
   }
-  @objc func changeInputMoney(){
+  @objc func changeInputMoney() {
     delegate.changeInputMoney()
   }
-  @objc func changeOutputMoney(){
+  @objc func changeOutputMoney() {
     delegate.changeOutputMoney()
   }
 
   // MARK: - PickerView
-  func showPickerView(){
+  func showPickerView() {
     currencyView.becomeFirstResponder()
   }
-  func  hidePickerView(){
+  func  hidePickerView() {
     currencyView.resignFirstResponder()
   }
   // MARK: - Setters
-  func setInputMoneyTitle(value: String){
+  func setInputMoneyTitle(value: String) {
     inputMoneyButton.setTitle(value, for: .normal)
   }
-  func setOutputMoneyTitle(value: String){
+  func setOutputMoneyTitle(value: String) {
     outputMoneyButton.setTitle(value, for: .normal)
   }
   func setMoneyOutputAmountLabel(value: String) {
@@ -136,16 +135,16 @@ class MainView: UIView {
   func setMoneyInputAmount(value: String) {
     inputMoneyTextField.text = value
   }
-  func setInfoLabel(value: String){
+  func setInfoLabel(value: String) {
     convertionLabel.text = value
   }
 }
 
 extension MainView: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder() // dismiss keyboard
-        return true
-    }
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    textField.resignFirstResponder() // dismiss keyboard
+    return true
+  }
   func textFieldDidEndEditing(_ textField: UITextField) {
     delegate.textFieldDidEndEditing(textField)
   }

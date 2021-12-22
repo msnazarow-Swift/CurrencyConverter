@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3E02D2BD26D2E35A00F8C3DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E02D2BC26D2E35A00F8C3DC /* AppDelegate.swift */; };
-		3E02D2C426D2E35A00F8C3DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E02D2C226D2E35A00F8C3DC /* Main.storyboard */; };
 		3E02D2C626D2E35C00F8C3DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E02D2C526D2E35C00F8C3DC /* Assets.xcassets */; };
 		3E02D2C926D2E35C00F8C3DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E02D2C726D2E35C00F8C3DC /* LaunchScreen.storyboard */; };
 		3E02D2D326D2E4FB00F8C3DC /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3E02D2D226D2E4FB00F8C3DC /* SnapKit */; };
@@ -36,7 +35,6 @@
 /* Begin PBXFileReference section */
 		3E02D2B926D2E35A00F8C3DC /* CurrencyConverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurrencyConverter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E02D2BC26D2E35A00F8C3DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3E02D2C326D2E35A00F8C3DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3E02D2C526D2E35C00F8C3DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3E02D2C826D2E35C00F8C3DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3E02D2CA26D2E35C00F8C3DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -95,7 +93,6 @@
 				3E02D2F526D30D2200F8C3DC /* Modules */,
 				3E02D2BC26D2E35A00F8C3DC /* AppDelegate.swift */,
 				3E02D2EA26D2ED0800F8C3DC /* ServiceService.swift */,
-				3E02D2C226D2E35A00F8C3DC /* Main.storyboard */,
 				3E02D2C526D2E35C00F8C3DC /* Assets.xcassets */,
 				3E02D2C726D2E35C00F8C3DC /* LaunchScreen.storyboard */,
 				3E02D2CA26D2E35C00F8C3DC /* Info.plist */,
@@ -242,7 +239,6 @@
 			files = (
 				3E02D2C926D2E35C00F8C3DC /* LaunchScreen.storyboard in Resources */,
 				3E02D2C626D2E35C00F8C3DC /* Assets.xcassets in Resources */,
-				3E02D2C426D2E35A00F8C3DC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,7 +261,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "PATH=/opt/homebrew/bin:$PATH\nif [ -f ~/com.raywenderlich.swiftlint.yml ]; then\n  if which swiftlint >/dev/null; then\n    swiftlint --no-cache --config ~/com.raywenderlich.swiftlint.yml\n  fi\nfi\n";
+			shellScript = "PATH=/opt/homebrew/bin:$PATH\nif [ -f ~/com.raywenderlich.swiftlint.yml ]; then\n  if which swiftlint >/dev/null; then\n      swiftlint --fix && swiftlint --no-cache --config ~/com.raywenderlich.swiftlint.yml\n  fi\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -300,14 +296,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		3E02D2C226D2E35A00F8C3DC /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3E02D2C326D2E35A00F8C3DC /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		3E02D2C726D2E35C00F8C3DC /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -8,21 +8,21 @@
 import UIKit
 
 protocol MainViewProtocol: class {
-  func setInputMoneyTitle(value: String);
-  func setOutputMoneyTitle(value:String);
-  func setMoneyOutputAmountLabel(value: String);
+  func setInputMoneyTitle(value: String)
+  func setOutputMoneyTitle(value: String)
+  func setMoneyOutputAmountLabel(value: String)
   func openAboutView()
   func changeInputMoney()
   func changeOutputMoney()
   func showPickerView()
   func hidePickerView()
-  func setImageForRow(row :Int, data: Data)
+  func setImageForRow(row: Int, data: Data)
   func textFieldDidEndEditing(_ textField: UITextField)
   func setMoneyInputAmount(value: String)
   func setInfoLabel(value: String)
 }
+// swiftlint:disable implicitly_unwrapped_optional
 class MainViewController: UIViewController, MainViewProtocol {
-
   var presenter: MainPresenterProtocol!
   var configurator: MainConfiguratorProtocol!
   let mainView = MainView()
@@ -55,42 +55,52 @@ class MainViewController: UIViewController, MainViewProtocol {
     mainView.setMoneyOutputAmountLabel(value: value)
   }
 
-  func openAboutView(){
+  func openAboutView() {
     presenter.openAboutView()
   }
 
-  func changeInputMoney(){
+  func changeInputMoney() {
     self.presenter.changeInputMoney()
   }
 
-  func changeOutputMoney(){
+  func changeOutputMoney() {
     presenter.changeOutputMoney()
   }
 
-  func showPickerView(){
+  func showPickerView() {
     mainView.showPickerView()
   }
-  func  hidePickerView(){
+
+  func  hidePickerView() {
     mainView.hidePickerView()
   }
+
   func setImageForRow(row: Int, data: Data) {
-    mainView.currencyView.images[row] = UIImage(data: data)!.trimmingTransparentPixels()
+    if let image = UIImage(data: data) {
+      mainView.currencyView.images[row] = image.trimmingTransparentPixels()
+    }
   }
-  @objc func hideKeyboard(_ sender: UITapGestureRecognizer){
+
+  @objc func hideKeyboard(_ sender: UITapGestureRecognizer) {
     mainView.endEditing(true)
   }
+
   func setInputMoneyTitle(value: String) {
     mainView.setInputMoneyTitle(value: value)
   }
+
   func setMoneyInputAmount(value: String) {
     mainView.setMoneyInputAmount(value: value)
   }
+
   func setOutputMoneyTitle(value: String) {
     mainView.setOutputMoneyTitle(value: value)
   }
-  func setInfoLabel(value: String){
+
+  func setInfoLabel(value: String) {
     mainView.setInfoLabel(value: value)
   }
+
   func textFieldDidEndEditing(_ textField: UITextField) {
     if let text = textField.text, let value = Double(text) {
       presenter.setAmount(with: value)

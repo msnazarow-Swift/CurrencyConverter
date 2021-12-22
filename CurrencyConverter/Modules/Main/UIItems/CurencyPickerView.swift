@@ -7,31 +7,30 @@
 
 import UIKit
 
-enum Modes{
+enum Modes {
   case input
   case output
 }
 
 protocol CurrencyPickerViewProtocol: AnyObject {
-  var currencies : [Currency]? {get set}
+  var currencies: [Currency]? { get set }
   func reload()
-  var images : [UIImage?] {get set}
+  var images: [UIImage?] { get set }
   func setArraySize(_ size: Int)
   func setRowAt(row: Int)
   var mode: Modes { get set }
 }
 
-protocol CurrencyPickerViewDelegate {
+protocol CurrencyPickerViewDelegate: AnyObject {
   func currencyPickerViewCancelButtonClicked()
   func currencyPickerViewApplyButtonClicked(selectedRow: Int)
 }
-
+// swiftlint:disable implicitly_unwrapped_optional
 class CurrencyPickerView: UITextField, CurrencyPickerViewProtocol {
-
   var mode = Modes.input
   var presenter: MainPresenterProtocol!
-  var currencies : [Currency]?
-  var images = [UIImage?]()
+  var currencies: [Currency]?
+  var images: [UIImage?] = []
   let pickerHeight = CGFloat(40.0)
   let applyButton: UIButton = {
     let button = UIButton()
@@ -50,7 +49,7 @@ class CurrencyPickerView: UITextField, CurrencyPickerViewProtocol {
     label.text = "Choose input currency"
     return label
   }()
-  lazy var toolBar : UIToolbar = {
+  lazy var toolBar: UIToolbar = {
     let toolBar = UIToolbar()
     toolBar.barStyle = .default
     toolBar.isTranslucent = true
@@ -64,17 +63,20 @@ class CurrencyPickerView: UITextField, CurrencyPickerViewProtocol {
     return toolBar
   }()
   lazy var stackView = { (row: Int) -> UIView in
-    let view =  UIView()
+    let view = UIView()
     let label = UILabel()
     let code = UILabel()
     let imageView = UIImageView()
-    label.text = self.currencies![row].currencyName
+    guard let currencies = self.currencies else {
+      return view
+    }
+    label.text = currencies[row].currencyName
     label.numberOfLines = 0
-    code.text = self.currencies![row].currencyCode
+    code.text = currencies[row].currencyCode
     imageView.image = self.images[row]
     if let image = imageView.image {
       let aspect = image.size.width / image.size.height
-      imageView.snp.makeConstraints { (maker) in
+      imageView.snp.makeConstraints { maker in
         maker.height.equalTo(self.pickerHeight - 5)
         maker.width.equalTo((self.pickerHeight - 5) * aspect)
       }
@@ -82,15 +84,15 @@ class CurrencyPickerView: UITextField, CurrencyPickerViewProtocol {
     view.addSubview(code)
     view.addSubview(label)
     view.addSubview(imageView)
-    code.snp.makeConstraints { (make) in
+    code.snp.makeConstraints { make in
       make.left.equalToSuperview()
       make.top.equalToSuperview()
     }
-    imageView.snp.makeConstraints { (make) in
+    imageView.snp.makeConstraints { make in
       make.right.equalToSuperview()
       make.top.equalToSuperview()
     }
-    label.snp.makeConstraints { (make) in
+    label.snp.makeConstraints { make in
       make.left.equalTo(code.snp.right).offset(30)
       make.right.equalTo(imageView.snp.left)
       make.top.equalToSuperview()
@@ -116,15 +118,16 @@ class CurrencyPickerView: UITextField, CurrencyPickerViewProtocol {
   func reload() {
     pickerView.reloadAllComponents()
   }
-  //MARK: -Setters
+  // MARK: - Setters
+
   func setArraySize(_ size: Int) {
     images = [UIImage?](repeating: nil, count: size)
   }
   func setRowAt(row: Int) {
-      self.pickerView.selectRow(row, inComponent: 0, animated: true)
+    self.pickerView.selectRow(row, inComponent: 0, animated: true)
   }
+  // MARK: - Actions
 
-  //MARK: -Actions
   @objc func cancelButtonClicked(_ sender: UIButton) {
     presenter.currencyPickerViewCancelButtonClicked()
   }
@@ -145,16 +148,20 @@ extension CurrencyPickerView: UIPickerViewDataSource, UIPickerViewDelegate {
     return currencies?[row].currencyName
   }
 
-  func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+  func pickerView(
+    _ pickerView: UIPickerView,
+    viewForRow row: Int,
+    forComponent component: Int,
+    reusing view: UIView?
+  ) -> UIView {
     return stackView(row)
   }
-  func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat{
+  func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
     let insets = UIApplication.shared.keyWindow?.safeAreaInsets
     let width = UIScreen.main.bounds.size.width
     let left = insets?.left ?? 0
     let right = insets?.right ?? 0
     return width - left - right - 50
-
   }
   func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
     return pickerHeight

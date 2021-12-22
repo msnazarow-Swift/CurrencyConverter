@@ -8,18 +8,17 @@
 import Foundation
 
 protocol AboutRouterProtocol: class {
-    func closeCurrentViewController()
+  func closeCurrentViewController()
 }
-
+// swiftlint:disable implicitly_unwrapped_optional
 class AboutRouter: AboutRouterProtocol {
-    
-    weak var viewController: AboutViewController!
-    
-    init(viewController: AboutViewController) {
-        self.viewController = viewController
-    }
-    
-    func closeCurrentViewController() {
-        viewController.navigationController?.popViewController(animated: true)
-    }
+  weak var viewController: AboutViewController!
+
+  init(viewController: AboutViewController) {
+    self.viewController = viewController
+  }
+
+  func closeCurrentViewController() {
+    viewController.navigationController?.popViewController(animated: true)
+  }
 }
