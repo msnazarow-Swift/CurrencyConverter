@@ -6,7 +6,7 @@
 //
 
 import UIKit
-// swiftlint:disable implicitly_unwrapped_optional
+
 class MainView: UIView {
     weak var delegate: MainViewProtocol!
     let inputMoneyTextField: UITextField = {

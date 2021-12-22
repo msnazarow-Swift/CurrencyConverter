@@ -71,7 +71,7 @@ class AboutView: UIView {
         delegate?.urlButtonClicked(sender)
     }
 }
-// swiftlint:disable implicitly_unwrapped_optional
+
 class AboutViewController: UIViewController, AboutViewProtocol {
     var presenter: AboutPresenterProtocol!
     var configurator: AboutConfiguratorProtocol!

@@ -18,7 +18,7 @@ protocol MainPresenterProtocol: AnyObject {
     func setArraySize(_ size: Int)
     func setAmount(with amount: Double)
 }
-// swiftlint:disable implicitly_unwrapped_optional
+
 class MainPresenter: MainPresenterProtocol {
     weak var view: MainViewProtocol!
     var interactor: MainInteractorProtocol!
@@ -65,6 +65,7 @@ class MainPresenter: MainPresenterProtocol {
     }
 
     func changeInputMoney() {
+        return // TODO: - free api limit only for USD
         let code = StorageService.shared.savedInputCurrency()
         let index = self.currencyPickerView.currencies?.firstIndex { currency -> Bool in
             currency.currencyCode == code
@@ -73,6 +74,7 @@ class MainPresenter: MainPresenterProtocol {
             self.currencyPickerView.setRowAt(row: index)
         }
         self.currencyPickerView.reload()
+        self.currencyPickerView.title = inputCurrencyPickerViewTitle
         self.currencyPickerView.mode = .input
         self.view.showPickerView()
     }
@@ -86,6 +88,7 @@ class MainPresenter: MainPresenterProtocol {
         }
         self.currencyPickerView.reload()
         self.currencyPickerView.mode = .output
+        self.currencyPickerView.title = outputCurrencyPickerViewTitle
         self.view.showPickerView()
     }
 

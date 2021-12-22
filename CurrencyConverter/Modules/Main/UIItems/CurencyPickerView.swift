@@ -14,11 +14,13 @@ enum Modes {
 
 protocol CurrencyPickerViewProtocol: AnyObject {
     var currencies: [Currency]? { get set }
-    func reload()
+    var mode: Modes { get set }
+    var title: String? { get set }
     var images: [UIImage?] { get set }
+
+    func reload()
     func setArraySize(_ size: Int)
     func setRowAt(row: Int)
-    var mode: Modes { get set }
 }
 
 protocol CurrencyPickerViewDelegate: AnyObject {
@@ -32,6 +34,15 @@ class CurrencyPickerView: UITextField, CurrencyPickerViewProtocol {
     var currencies: [Currency]?
     var images: [UIImage?] = []
     let pickerHeight = CGFloat(40.0)
+
+    var title: String? {
+        get {
+            titleLabel.text
+        }
+        set {
+            titleLabel.text = newValue
+        }
+    }
 
     let applyButton: UIButton = {
         let button = UIButton()

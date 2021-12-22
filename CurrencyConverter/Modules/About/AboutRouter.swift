@@ -10,7 +10,7 @@ import Foundation
 protocol AboutRouterProtocol: AnyObject {
     func closeCurrentViewController()
 }
-// swiftlint:disable implicitly_unwrapped_optional
+
 class AboutRouter: AboutRouterProtocol {
     weak var viewController: AboutViewController!
 

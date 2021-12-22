@@ -26,7 +26,7 @@ class MainViewController: UIViewController, MainViewProtocol {
     var presenter: MainPresenterProtocol!
     var configurator: MainConfiguratorProtocol!
     let mainView = MainView()
-
+    lazy var tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
     // MARK: Life Circle
 
     override func loadView() {
@@ -43,10 +43,7 @@ class MainViewController: UIViewController, MainViewProtocol {
         configurator.configure(with: self)
         presenter.viewDidLoad()
         mainView.delegate = self
-        // TODO: - Почему не работает из класса?
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         mainView.addGestureRecognizer(tapRecognizer)
-        // Do any additional setup after loading the view.
     }
 
     // MARK: - Protocol implementation
